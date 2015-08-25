@@ -1,0 +1,9 @@
+<Data>
+    <variable name="port" value="6789"/>
+    <variable name="crap" value="6789"/>
+    <variable name="hello" value="6789"/>
+
+    <entry name="entry">
+        <variable name="indent" value="yolo"/>
+    </entry>
+</Data>
