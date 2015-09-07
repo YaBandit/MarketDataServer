@@ -5,7 +5,7 @@ package com.evolve.config;
  */
 public enum XmlAttributeType {
 
-    DATA("Data"),
+    DATA("data"),
     VARIABLE("variable"),
     ENTRY("entry");
 

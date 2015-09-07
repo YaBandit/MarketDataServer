@@ -1,6 +1,7 @@
 package com.evolve.config;
 
 import org.w3c.dom.Document;
+import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
@@ -50,7 +51,7 @@ public class XmlConfigFile extends ConfigFile {
         for (int i = 0; i < nodeList.getLength(); i++){
             final Node node = nodeList.item(i);
             final String nodeName = node.getNodeName();
-            XmlAttributeType xmlAttributeType = XmlAttributeType.valueOf(nodeName);
+            XmlAttributeType xmlAttributeType = XmlAttributeType.valueOf("DATA");
 
             if (xmlAttributeType ==  XmlAttributeType.DATA) {
                 recurseDocument(node);
@@ -84,7 +85,7 @@ public class XmlConfigFile extends ConfigFile {
     private void parseVariableNode(Node node) {
         final String name = node.getAttributes().getNamedItem("name").getNodeValue();
         DataNode dataNode = new DataNode(false, name);
-        node.get
+        NamedNodeMap n = node.getAttributes();
     }
 
     private void parseEntryNode(Node node) {
