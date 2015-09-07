@@ -51,7 +51,7 @@ public class XmlConfigFile extends ConfigFile {
         for (int i = 0; i < nodeList.getLength(); i++){
             final Node node = nodeList.item(i);
             final String nodeName = node.getNodeName();
-            XmlAttributeType xmlAttributeType = XmlAttributeType.valueOf(nodeName);
+            XmlAttributeType xmlAttributeType = XmlAttributeType.valueOf("DATA");
 
             if (xmlAttributeType ==  XmlAttributeType.DATA) {
                 recurseDocument(node);
