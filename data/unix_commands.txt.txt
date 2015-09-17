@@ -1,0 +1,5 @@
+number;command;function
+1;ll;Display files and folders
+2;cd;Change Directory
+3;ps;Show processes
+4;clear;Clear page

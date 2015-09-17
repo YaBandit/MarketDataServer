@@ -5,18 +5,8 @@ package com.evolve.config;
  */
 public enum XmlAttributeType {
 
-    DATA("data"),
-    VARIABLE("variable"),
-    ENTRY("entry");
-
-    XmlAttributeType(String arributeType) {
-        this.attributeType = arributeType;
-    }
-
-    private final String attributeType;
-
-    public String getAttributeType() {
-        return attributeType;
-    }
+    DATA,
+    VARIABLE,
+    ENTRY;
 
 }

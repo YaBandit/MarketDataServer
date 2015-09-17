@@ -8,7 +8,6 @@ import java.io.IOException;
 public class Baseplate {
 
     private static Logger logger = LogManager.getLogger(Baseplate.class);
-
     private static final ServerBaseplate serverBaseplate = new ServerBaseplate();
 
     public static void main(String[] args) {
