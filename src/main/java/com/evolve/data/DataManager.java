@@ -1,21 +1,34 @@
 package com.evolve.data;
 
+import com.evolve.util.FileLoader;
+import org.xml.sax.SAXException;
+
+import javax.xml.parsers.ParserConfigurationException;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
 /**
  * Created by Dylan on 17/09/2015.
  */
-public class DataManager {
+public class DataManager extends FileLoader {
 
     private static final DataManager INSTANCE = new DataManager();
+    private static final String dataDirectory = "data";
 
     public static DataManager getINSTANCE() {
         return INSTANCE;
     }
 
     private DataManager() {
-        loadData();
+        try {
+            loadConfig(dataDirectory);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
-    private void loadData() {
+    public void parseFile(String loc) {
 
     }
 

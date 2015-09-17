@@ -9,14 +9,17 @@ public class Baseplate {
 
     private static Logger logger = LogManager.getLogger(Baseplate.class);
     private static final ServerBaseplate serverBaseplate = new ServerBaseplate();
+    private static final ConfigLoader configLoader = new ConfigLoader();
 
     public static void main(String[] args) {
+
+
 
         logger.debug("Starting MDServer");
 
         /*
         try {
-            ConfigLoader.loadConfig();
+            configLoader.loadConfig("src/main/Config");
         } catch (IOException e) {
             e.printStackTrace();
         }
