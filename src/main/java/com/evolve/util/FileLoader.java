@@ -1,7 +1,5 @@
 package com.evolve.util;
 
-import com.evolve.config.ConfigFileInterface;
-import com.evolve.config.XmlConfigFile;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;

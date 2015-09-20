@@ -1,15 +1,11 @@
 package com.evolve.data;
 
 import com.evolve.util.FileLoader;
-import org.xml.sax.SAXException;
+import javafx.util.Pair;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
-import javax.xml.parsers.ParserConfigurationException;
-import java.io.BufferedInputStream;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List;
+import java.io.*;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -19,7 +15,10 @@ import java.util.concurrent.ConcurrentHashMap;
 public class DataManager extends FileLoader {
 
     private static final DataManager INSTANCE = new DataManager();
-    private static final String dataDirectory = "data";
+    private static final String DATA_DIRECTORY = "data";
+    private static final String DELIMITER = ";";
+
+    private static Logger logger = LogManager.getLogger(DataManager.class);
 
     private static final Map<OneADayTypesEnum, DataConstruct> dataConstructs = new ConcurrentHashMap<>();
 
@@ -29,7 +28,7 @@ public class DataManager extends FileLoader {
 
     private DataManager() {
         try {
-            loadConfig(dataDirectory);
+            loadConfig(DATA_DIRECTORY);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -47,30 +46,45 @@ public class DataManager extends FileLoader {
     }
 
     public DataConstruct getData(OneADayTypesEnum oneADayTypesEnum) {
+        return dataConstructs.get(oneADayTypesEnum);
+    }
 
-        switch (oneADayTypesEnum) {
-            case UNIX_COMMANDS:
-                break;
-            case ANIMALS:
-                break;
-            case FAMOUS_POLITIONS:
-                break;
-            case SCIENCE_FACT:
-                break;
+    private DataConstruct parseKeyValueData(String fileLoc) throws IOException {
+
+        BufferedReader br = new BufferedReader(new FileReader(fileLoc));
+        String line;
+        if ((line = br.readLine()) != null) {
+            // Line will now equal the header line
+            // Columns are: Num;Key;Value
+            final String[] columns = line.split(DELIMITER);
+            if (columns.length != 3) {
+                logger.debug("Unable to parse data file: " + fileLoc);
+                logger.debug("Requied columns = 3. Columns in file: " + columns.length);
+                return null;
+            }
+            DataConstruct dataConstruct = new KeyValueStore(columns);
+            while ((line = br.readLine()) != null) {
+                final String[] parts = line.split(DELIMITER, 3);
+                if (parts.length != 3) {
+                    logger.debug("Incorrectly formatted line in data file: " + fileLoc + ". On line: " + line);
+                    continue;
+                }
+
+                final Pair<String, String> data = new Pair<>(parts[1], parts[2]);
+                final int entryNum;
+
+                try {
+                    entryNum = Integer.parseInt(parts[0]);
+                } catch (NumberFormatException e) {
+                    logger.debug("Unable to parse data entry numnber in data file: " + fileLoc + ". On line: " + line);
+                    logger.debug(e);
+                    continue;
+                }
+                dataConstruct.addData(entryNum, data);
+            }
+            return dataConstruct;
         }
-
         return null;
-    }
-
-    public DataConstruct getData(OneADayTypesEnum oneADayTypesEnum, int index) {
-
-        return null;
-    }
-
-    private DataConstruct parseKeyValueData() {
-        DataConstruct dataConstruct = null;
-
-        BufferedInputStream bis = new BufferedInputStream(new );
     }
 
 }

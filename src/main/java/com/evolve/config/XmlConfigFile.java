@@ -14,9 +14,6 @@ import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
-/**
- * Created by dylan on 8/24/2015.
- */
 public class XmlConfigFile extends ConfigFile {
 
     private static final String ROOT_ELEMENT = "Data";
