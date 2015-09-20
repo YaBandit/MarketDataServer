@@ -20,7 +20,7 @@ public class DataManager extends FileLoader {
 
     private static Logger logger = LogManager.getLogger(DataManager.class);
 
-    private static final Map<OneADayTypesEnum, DataConstruct> dataConstructs = new ConcurrentHashMap<>();
+    private final Map<OneADayTypesEnum, DataConstruct> dataConstructs = new ConcurrentHashMap<>();
 
     public static DataManager getINSTANCE() {
         return INSTANCE;
@@ -34,13 +34,13 @@ public class DataManager extends FileLoader {
         }
     }
 
-    public void parseFile(String loc) {
+    public void parseFile(String loc) throws IOException {
         final String fileName = getNameFromFileLoc(loc);
-        final OneADayTypesEnum oneADayTypesEnum = OneADayTypesEnum.valueOf(fileName);
+        final OneADayTypesEnum oneADayTypesEnum = OneADayTypesEnum.valueOf(fileName.toUpperCase());
 
         switch (oneADayTypesEnum) {
             case UNIX_COMMANDS:
-                DataConstruct dataConstruct = parseKeyValueData();
+                dataConstructs.put(OneADayTypesEnum.UNIX_COMMANDS, parseKeyValueData(loc));
                 break;
         }
     }

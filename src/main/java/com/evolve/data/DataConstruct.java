@@ -5,15 +5,15 @@ import java.util.Random;
 /**
  * Created by Dylan on 17/09/2015.
  */
-public interface DataConstruct <E> {
+public interface DataConstruct <P> {
 
     final Random random = new Random();
 
-    public E getData();
+    public P getData();
 
-    public E getData(int i);
+    public P getData(int i);
 
-    public void addData(int entryNum, E data);
+    public void addData(int entryNum, P data);
 
     public String[] getColumnHeadings();
 

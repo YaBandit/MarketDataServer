@@ -53,7 +53,6 @@ public class ServerBaseplate extends org.restlet.Application {
         Router router = new Router(getContext());
 
         router.attach("/unix", UnixCommandResource.class);
-        //router.attach("/fx", FinancialDataResource.class);
 
         return router;
     }
