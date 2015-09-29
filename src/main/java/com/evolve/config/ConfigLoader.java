@@ -1,5 +1,6 @@
 package com.evolve.config;
 
+import com.evolve.util.FileLoader;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.w3c.dom.Document;
@@ -16,26 +17,12 @@ import java.nio.file.Paths;
 /**
  * Created by dylan on 8/20/2015.
  */
-public class ConfigLoader {
+public class ConfigLoader extends FileLoader {
 
     private static final ConfigManager configManager = ConfigManager.getInstance();
     private static Logger logger = LogManager.getLogger(ConfigLoader.class);
 
-    private static final String configDirectory = "src/main/Config";
-
-    public static void loadConfig() throws IOException {
-        Files.walk(Paths.get(configDirectory)).forEach(filePath -> {
-            if (Files.isRegularFile(filePath)) {
-                try {
-                    parseFile(filePath.toString());
-                } catch (IOException | SAXException | ParserConfigurationException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-    }
-
-    public static void parseFile(String fileLoc) throws IOException, SAXException, ParserConfigurationException {
+    public void parseFile(String fileLoc) throws IOException, SAXException, ParserConfigurationException {
 
         ConfigFileInterface configFile = null;
 
@@ -53,13 +40,6 @@ public class ConfigLoader {
         configFile.parseFile();
         configManager.addFile(configFile);
         logger.debug("Adding config file to config manager: " + fileLoc);
-    }
-
-    public static String getNameFromFileLoc(String fileLoc) {
-        final String[] parts = fileLoc.split("\\\\");
-        final String end = parts[parts.length -1];
-        final String[] nameParts = end.split("\\.");
-        return nameParts[0];
     }
 
 }

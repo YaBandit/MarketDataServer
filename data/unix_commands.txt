@@ -1,0 +1,32 @@
+number;command;function
+1;ls;Display files and folders
+2;cd;Change Directory
+3;ps;Show processes
+4;clear;Clear page
+5;cat;display or concatenate files
+6;chmod;change the permissions on a file or directory
+7;cp;copy a file
+8;date;display the current date and time
+9;diff;display differences between text files
+10;file;determine the type of a file
+11;find;find files of a specified name or type
+12;ftp;file transfer program
+13;grep;searches files for a specified string or expression
+14;gzip;compress a file
+15;help;display information about bash builtin commands
+16;info;read online documentation
+18;kill;kill a process
+19;lpr;print out a file
+20;man;display an on-line manual page
+21;mkdir;make a directory
+22;more;scan through a text file page by page
+23;mv;move or rename files or directories
+24;nice;change the priority at which a job is being run
+25;passwd;change your password
+26;pwd;display the name of your current directory
+27;quota;disk quota and usage
+28;rm;remove files or directories
+29;rmdir;remove a directory
+30;sort;sort and collate lines
+31;ssh;secure remote access
+32;tar;create and use archives of files
