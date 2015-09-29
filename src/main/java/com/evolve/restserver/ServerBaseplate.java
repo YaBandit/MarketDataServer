@@ -1,5 +1,6 @@
 package com.evolve.restserver;
 
+import com.evolve.restserver.resources.PhotoResourceTest;
 import com.evolve.restserver.resources.UnixCommandResource;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -53,6 +54,7 @@ public class ServerBaseplate extends org.restlet.Application {
         Router router = new Router(getContext());
 
         router.attach("/unix", UnixCommandResource.class);
+        router.attach("/photo", PhotoResourceTest.class);
 
         return router;
     }
